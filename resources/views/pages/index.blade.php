@@ -100,12 +100,6 @@
 
                 </div>
 
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus id ducimus quae velit nemo quasi recusandae blanditiis.
-                    Accusamus tenetur maiores officia asperiores fugit numquam deserunt, omnis, maxime vitae commodi molestiae.
-                </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus id ducimus quae velit nemo quasi recusandae blanditiis.
-                    Accusamus tenetur maiores officia asperiores fugit numquam deserunt, omnis, maxime vitae commodi molestiae.
-                </p>
             </div>
 
 
