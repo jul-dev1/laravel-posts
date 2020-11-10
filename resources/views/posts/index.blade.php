@@ -8,7 +8,7 @@
             @foreach($posts as $post)
                 <div class="p-3" >
                     <li> <strong><a href="./posts/{{$post->id}}"> {{$post->title}} </strong> </li>
-                    <!-- <img style="width: 200px;" class="img-fluid"  src="/laravel-project/laraa/public/storage/cover_image/{{$post->cover_image}}">  -->
+                    <img style="width: 200px;" class="img-fluid"  src="/laravel-project/laraa/public/storage/cover_image/{{$post->cover_image}}"> 
                     </a>
                     <hr>
                     <small> Written {{$post->created_at->diffForHumans()}}</small>

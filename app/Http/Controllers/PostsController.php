@@ -22,8 +22,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts= Post::paginate(5);
-        
+        $posts= Post::paginate(10);
         // $posts= Post::orderBy('title','desc')->get();
         return view('posts.index')->with('posts',$posts);
     }
@@ -62,7 +61,8 @@ class PostsController extends Controller
             //file name to store
             $fileNameToStore=$fileName.'_'. time().'.'.$extension;
             //upload image
-            $path=$request->file('cover_image')->storeAs('public/cover_image',$fileNameToStore);
+            // $path =$request->file('cover_image')->storeAs('public/storage/cover_image',$fileNameToStore);
+            $path =$request->cover_image->move(public_path('storage\cover_image'), $fileNameToStore);
         }else{
             $fileNameToStore='noimage.jpeg';
         }
@@ -129,7 +129,11 @@ class PostsController extends Controller
         if($request->hasFile('cover_image')){
             //chech if the post have image , if yes delete it and update it with the new from the request
             if($posts->cover_image&&$posts->cover_image!='noimage.jpeg'){
-                     Storage::delete('public/cover_image/'.$posts->cover_image);
+                    //  the storage:: delete dont work now ....i delete with unlink now
+                    //  Storage::delete('storage/cover_image/'.$posts->cover_image); 
+                    unlink('storage/cover_image/'.$posts->cover_image);
+
+
             }
             //get filename with extension
             $filenameWithExt=$request->file('cover_image')->getClientOriginalName();
@@ -140,7 +144,7 @@ class PostsController extends Controller
             //file name to store
             $fileNameToStore=$fileName.'_'. time().'.'.$extension;
             //upload image
-            $path=$request->file('cover_image')->storeAs('public/cover_image',$fileNameToStore);
+            $path =$request->cover_image->move(public_path('storage\cover_image'), $fileNameToStore);
         }
         $post=  Post::find($id);
         $post->title=$request->input('title');
@@ -165,7 +169,9 @@ class PostsController extends Controller
             return redirect('./posts')->with('error','Unauthorized page');
         }
         if($posts->cover_image!='noimage.jpeg'){
-            Storage::delete('public/cover_image/'.$posts->cover_image);
+            // Storage::delete('cover_image/'.$posts->cover_image);
+            unlink('storage/cover_image/'.$posts->cover_image);
+
 
         }
         $posts->delete();
